@@ -3,5 +3,8 @@
 		FindGameObject name=Destination rememberAs=Target
 		Speak message=Moving
 		Move to=Target
+		Speak message=Arrived
+		Wait duration=2.0
 	SEQUENCE
-		Speak message=I_cant_reach_the_destination
+		Speak message=WaitAndTryAgain
+		Wait duration=2.0

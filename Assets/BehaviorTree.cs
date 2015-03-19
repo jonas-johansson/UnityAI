@@ -467,17 +467,21 @@ namespace BehaviorTree
 				{
 					Vector3 target = toGameObject.transform.position;
 					targetPosAtLastPathing = target;
+					path = new NavMeshPath();
 					navMeshAgent.CalculatePath(target, path);
 
 					if (path.status == NavMeshPathStatus.PathComplete)
 					{
 						// If the actual end position is too far away from the desired
 						// end position we consider our movement a failure.
+						Debug.Log(path.corners.Length);
 						Vector3 pathEnd = path.corners[path.corners.Length - 1];
 						if (GroundDistance(target, pathEnd) < 0.1f)
 						{
-							navMeshAgent.SetPath(path);
-							return;
+							if (navMeshAgent.SetPath(path))
+							{
+								return;
+							}
 						}
 					}
 				}
