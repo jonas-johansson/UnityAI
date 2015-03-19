@@ -18,14 +18,3 @@
 	</BehaviorTree>
 </Brain>
 
-
-
-Selector
-	Sequence
-		MoveTarget = FindGameObject("Destination")
-		MoveTo(MoveTarget)
-		Speak("I reached the destination.")
-		Halt
-	Sequence
-		Speak("Aaaargh! I can't reach the destination.")
-		Halt

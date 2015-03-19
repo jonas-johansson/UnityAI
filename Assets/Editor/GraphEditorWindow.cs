@@ -1,7 +1,23 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System;
 
+public class NewNodeWindow : EditorWindow
+{
+	string type;
+	public Action OnCreateNode;
+
+	void OnGUI()
+	{
+		GUILayout.Label("Base Settings", EditorStyles.boldLabel);
+		type = EditorGUILayout.TextField("Node Type", type);
+		if (GUILayout.Button("Create"))
+		{
+			OnCreateNode();
+		}
+	}
+}
 
 public class GraphEditorWindow : EditorWindow
 {
@@ -10,15 +26,19 @@ public class GraphEditorWindow : EditorWindow
     List<int> windowsToAttach = new List<int>();
     List<int> attachedWindows = new List<int>();
 
-    [MenuItem("Window/Node editor")]
+    [MenuItem("Window/Behavior Tree")]
     static void ShowEditor()
     {
-        GraphEditorWindow editor = EditorWindow.GetWindow<GraphEditorWindow>();
+        EditorWindow.GetWindow<GraphEditorWindow>();
     }
 
+	string myString;
 
     void OnGUI()
     {
+		GUILayout.Label("Base Settings", EditorStyles.boldLabel);
+		myString = EditorGUILayout.TextField("Text Field", myString);
+
         if (windowsToAttach.Count == 2)
         {
             attachedWindows.Add(windowsToAttach[0]);
@@ -38,12 +58,19 @@ public class GraphEditorWindow : EditorWindow
 
         if (GUILayout.Button("Create Node"))
         {
-            windows.Add(new Rect(10, 10, 100, 100));
+            var newNodeWindow = EditorWindow.GetWindow<NewNodeWindow>();
+			newNodeWindow.OnCreateNode = () =>
+			{
+				windows.Add(new Rect(10, 10, 100, 100));
+			};
         }
 
+		var style = new GUIStyle();
+		//style.alignment = TextAnchor.MiddleCenter;
+		
         for (int i = 0; i < windows.Count; i++)
         {
-            windows[i] = GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
+			GUI.Box(windows[i], "Sequence", style); //GUI.Window(i, windows[i], DrawNodeWindow, "Window " + i);
         }
 
         EndWindows();

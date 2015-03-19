@@ -1,0 +1,5 @@
+﻿SEQUENCE
+	Speak message=Thinking
+	Wait duration=2.0
+	Speak message=Finished
+	Wait duration=999.0
