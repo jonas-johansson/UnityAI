@@ -311,12 +311,12 @@ namespace BehaviorTree
 					switch (s)
 					{
 						case Status.Running:
-						case Status.Failure:
+						case Status.Success:
 							return s;
 
-						case Status.Success:
+						case Status.Failure:
 							if (!currentChild.MoveNext())
-								return Status.Success;
+								return Status.Failure;
 							break;
 					}
 				}
