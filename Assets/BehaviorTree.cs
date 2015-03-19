@@ -39,14 +39,18 @@ namespace BehaviorTree
 				Stack<Node> stack = new Stack<Node>();
 				Node prev = null;
 
-				foreach (var line in lines)
+				foreach (var unfilteredLine in lines)
 				{
+					var line = unfilteredLine
+						.Replace("\t", string.Empty)
+						.Replace("\r", string.Empty);
+
 					var node = new Node();
 
 					var tokens = line.Split(' ');
 					node.typeName = tokens[0];
 
-					int depth = TreeDepth(line);
+					int depth = TreeDepth(unfilteredLine);
 					if (depth > stack.Count)
 						stack.Push(prev);
 					else if (depth < stack.Count)
@@ -287,6 +291,46 @@ namespace BehaviorTree
 			}
 		}
 
+		public class Selector : Node
+		{
+			private List<Node>.Enumerator currentChild;
+
+			protected override void OnStart(Context context)
+			{
+				// Move to the first child
+				currentChild = this.children.GetEnumerator();
+				currentChild.MoveNext();
+			}
+
+			protected override Status OnUpdate(Context context)
+			{
+				while (true)
+				{
+					Status s = currentChild.Current.Tick(context);
+
+					switch (s)
+					{
+						case Status.Running:
+						case Status.Failure:
+							return s;
+
+						case Status.Success:
+							if (!currentChild.MoveNext())
+								return Status.Success;
+							break;
+					}
+				}
+			}
+
+			protected override void OnStop()
+			{
+				if (currentChild.Current != null)
+				{
+					currentChild.Current.Stop();
+				}
+			}
+		}
+
 		public class Log : Node
 		{
 			public string message;
@@ -354,7 +398,7 @@ namespace BehaviorTree
 
 		public class Wait : Node
 		{
-			private float duration;
+			public float duration;
 			private float startTime;
 
 			protected override void OnStart(Context context)
@@ -368,6 +412,43 @@ namespace BehaviorTree
 			}
 
 			private float ElapsedTime { get { return Time.time - startTime; } }
+		}
+
+		public class Move : Node
+		{
+			public string to;
+			
+			private GameObject toGameObject;
+			private NavMeshAgent navMeshAgent;
+
+			protected override void OnStart(Context context)
+			{
+				context.memory.Recall(to, out toGameObject);
+				navMeshAgent = context.ownerGameObject.GetComponentInChildren<NavMeshAgent>();
+			}
+
+			protected override Status OnUpdate(Context context)
+			{
+				if (toGameObject == null)
+					return Status.Failure;
+
+				navMeshAgent.destination = toGameObject.transform.position;
+
+				if (navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid)
+					return Status.Failure;
+				else if (AtDestination)
+					return Status.Success;
+				else
+					return Status.Running;
+			}
+
+			private bool AtDestination
+			{
+				get
+				{
+					return navMeshAgent.hasPath && navMeshAgent.remainingDistance <= 0.5f;
+				}
+			}
 		}
 	}
 }

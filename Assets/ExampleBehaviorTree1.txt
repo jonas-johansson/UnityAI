@@ -1,5 +1,7 @@
-﻿SEQUENCE
-	Speak message=Thinking
-	Wait duration=2.0
-	Speak message=Finished
-	Wait duration=999.0
+﻿SELECTOR
+	SEQUENCE
+		FindGameObject name=Destination rememberAs=Target
+		Speak message=Moving
+		Move to=Target
+	SEQUENCE
+		Speak message=I_cant_reach_the_destination
