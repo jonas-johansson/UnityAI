@@ -420,26 +420,76 @@ namespace BehaviorTree
 			
 			private GameObject toGameObject;
 			private NavMeshAgent navMeshAgent;
+			private NavMeshPath path = new NavMeshPath();
+			private Vector3 targetPosAtLastPathing;
 
 			protected override void OnStart(Context context)
 			{
 				context.memory.Recall(to, out toGameObject);
 				navMeshAgent = context.ownerGameObject.GetComponentInChildren<NavMeshAgent>();
+				RecalculatePath();
 			}
 
 			protected override Status OnUpdate(Context context)
 			{
-				if (toGameObject == null)
-					return Status.Failure;
+				if (Vector3.Distance(targetPosAtLastPathing, toGameObject.transform.position) > 0.5)
+				{
+					RecalculatePath();
+				}
 
-				navMeshAgent.destination = toGameObject.transform.position;
-
-				if (navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid)
+				if (path.status != NavMeshPathStatus.PathComplete)
+				{
+					Debug.Log("Couldn't reach");
 					return Status.Failure;
-				else if (AtDestination)
-					return Status.Success;
-				else
-					return Status.Running;
+				}
+
+				if (navMeshAgent.hasPath && navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
+				{
+					bool arrived = navMeshAgent.remainingDistance <= 0.5f;
+					if (arrived)
+					{
+						Debug.Log("Arrived");
+						return Status.Success;
+					}
+				}
+
+				return Status.Running;
+			}
+
+			protected override void OnStop()
+			{
+				navMeshAgent.Stop();
+			}
+
+			private void RecalculatePath()
+			{
+				if (toGameObject)
+				{
+					Vector3 target = toGameObject.transform.position;
+					targetPosAtLastPathing = target;
+					navMeshAgent.CalculatePath(target, path);
+
+					if (path.status == NavMeshPathStatus.PathComplete)
+					{
+						// If the actual end position is too far away from the desired
+						// end position we consider our movement a failure.
+						Vector3 pathEnd = path.corners[path.corners.Length - 1];
+						if (GroundDistance(target, pathEnd) < 0.1f)
+						{
+							navMeshAgent.SetPath(path);
+							return;
+						}
+					}
+				}
+
+				// Failure
+				path = new NavMeshPath();
+			}
+
+			private float GroundDistance(Vector3 a, Vector3 b)
+			{
+				a.y = b.y = 0;
+				return Vector3.Distance(a, b);
 			}
 
 			private bool AtDestination
