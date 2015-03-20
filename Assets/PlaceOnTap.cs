@@ -9,7 +9,7 @@ public class PlaceOnTap : MonoBehaviour
 		{
 			var hit = new RaycastHit();
 			var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			if (Physics.Raycast(ray, out hit))
+			if (Physics.Raycast(ray, out hit, 300.0f))
 			{
 				transform.position = hit.point;
 			}

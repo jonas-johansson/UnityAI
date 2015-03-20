@@ -1,0 +1,4 @@
+﻿SEQUENCE
+	FindRandomGameObject tag=PatrolPoint rememberAs=PatrolPoint
+	Move to=PatrolPoint
+	Wait duration=1

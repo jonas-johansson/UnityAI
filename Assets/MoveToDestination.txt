@@ -1,0 +1,7 @@
+﻿SELECTOR
+	SEQUENCE
+		FindGameObject name=Destination rememberAs=Target
+		Move to=Target
+		Wait duration=0.5
+	SEQUENCE
+		Wait duration=1.0

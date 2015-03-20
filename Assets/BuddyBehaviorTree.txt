@@ -1,0 +1,7 @@
+﻿SEQUENCE
+	FindGameObject tag=Player rememberAs=Player
+	FindClosestUnlockedGameObject tag=TacticalPoint around=Player rememberAs=TacticalPoint
+	LockGameObject subject=TacticalPoint
+		SEQUENCE
+			Move to=TacticalPoint
+			Wait duration=1
