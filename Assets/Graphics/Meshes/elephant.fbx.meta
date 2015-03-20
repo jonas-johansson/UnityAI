@@ -1,0 +1,159 @@
+fileFormatVersion: 2
+guid: 06a3782d50c399e489831da79583de82
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: _
+    100002: bodyMesh
+    100004: earLMesh
+    100006: earRMesh
+    100008: //RootNode
+    100010: eyeLMesh
+    100012: eyeRMesh
+    100014: legBackLMesh
+    100016: legBackRMesh
+    100018: legFrontLMesh
+    100020: legFrontRMesh
+    100022: trout1Joint
+    100024: trout2Joint
+    100026: trout3Joint
+    100028: trout4Joint
+    100030: trout5Joint
+    100032: trout6Joint
+    100034: trout7Joint
+    100036: trout8Joint
+    100038: troutMesh
+    100040: tuskLMesh
+    100042: tuskRMesh
+    400000: _
+    400002: bodyMesh
+    400004: earLMesh
+    400006: earRMesh
+    400008: //RootNode
+    400010: eyeLMesh
+    400012: eyeRMesh
+    400014: legBackLMesh
+    400016: legBackRMesh
+    400018: legFrontLMesh
+    400020: legFrontRMesh
+    400022: trout1Joint
+    400024: trout2Joint
+    400026: trout3Joint
+    400028: trout4Joint
+    400030: trout5Joint
+    400032: trout6Joint
+    400034: trout7Joint
+    400036: trout8Joint
+    400038: troutMesh
+    400040: tuskLMesh
+    400042: tuskRMesh
+    2300000: bodyMesh
+    2300002: earLMesh
+    2300004: earRMesh
+    2300006: eyeLMesh
+    2300008: eyeRMesh
+    2300010: legBackLMesh
+    2300012: legBackRMesh
+    2300014: legFrontLMesh
+    2300016: legFrontRMesh
+    2300018: tuskLMesh
+    2300020: tuskRMesh
+    3300000: bodyMesh
+    3300002: earLMesh
+    3300004: earRMesh
+    3300006: eyeLMesh
+    3300008: eyeRMesh
+    3300010: legBackLMesh
+    3300012: legBackRMesh
+    3300014: legFrontLMesh
+    3300016: legFrontRMesh
+    3300018: tuskLMesh
+    3300020: tuskRMesh
+    4300000: troutMesh
+    4300002: bodyMesh
+    4300004: earRMesh
+    4300006: earLMesh
+    4300008: eyeRMesh
+    4300010: eyeLMesh
+    4300012: tuskLMesh
+    4300014: tuskRMesh
+    4300016: legBackRMesh
+    4300018: legFrontRMesh
+    4300020: legFrontLMesh
+    4300022: legBackLMesh
+    7400000: walk
+    9500000: //RootNode
+    13700000: troutMesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 0
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations:
+    - name: walk
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 

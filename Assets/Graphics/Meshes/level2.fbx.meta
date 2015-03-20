@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: 0cb4cea69c69e1443805eddf380be1c9
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: extrudedSurface1
+    100002: //RootNode
+    100004: pCube1
+    100006: pCube2
+    100008: pPlane1
+    100010: pPlane2
+    100012: fenceDoorMesh
+    100014: fenceMesh
+    100016: groundMesh
+    100018: wallMesh
+    100020: water1Mesh
+    100022: water2Mesh
+    100024: water3Mesh
+    400000: extrudedSurface1
+    400002: //RootNode
+    400004: pCube1
+    400006: pCube2
+    400008: pPlane1
+    400010: pPlane2
+    400012: fenceDoorMesh
+    400014: fenceMesh
+    400016: groundMesh
+    400018: wallMesh
+    400020: water1Mesh
+    400022: water2Mesh
+    400024: water3Mesh
+    2300000: extrudedSurface1
+    2300002: pCube1
+    2300004: pCube2
+    2300006: pPlane1
+    2300008: pPlane2
+    2300010: fenceDoorMesh
+    2300012: fenceMesh
+    2300014: groundMesh
+    2300016: wallMesh
+    2300018: water1Mesh
+    2300020: water2Mesh
+    2300022: water3Mesh
+    3300000: extrudedSurface1
+    3300002: pCube1
+    3300004: pCube2
+    3300006: pPlane1
+    3300008: pPlane2
+    3300010: fenceDoorMesh
+    3300012: fenceMesh
+    3300014: groundMesh
+    3300016: wallMesh
+    3300018: water1Mesh
+    3300020: water2Mesh
+    3300022: water3Mesh
+    4300000: extrudedSurface1
+    4300002: pCube1
+    4300004: pCube2
+    4300006: pPlane1
+    4300008: pPlane2
+    4300010: fenceMesh
+    4300012: wallMesh
+    4300014: water1Mesh
+    4300016: water2Mesh
+    4300018: water3Mesh
+    4300020: groundMesh
+    4300022: fenceDoorMesh
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations:
+    - name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 150
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 1
+  userData: 

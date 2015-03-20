@@ -1,0 +1,280 @@
+fileFormatVersion: 2
+guid: 24e3d5ff7b0ded841a68509f5fc39c14
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: beakMesh
+    100002: bodyMesh
+    100004: combMesh
+    100006: eyeLMesh
+    100008: eyeRMesh
+    100010: footGrp
+    100012: footLMesh
+    100014: footRMesh
+    100016: headMesh
+    100018: //RootNode
+    100020: mainGrp
+    100022: tailMesh
+    100024: wingLGrp
+    100026: wingLMesh
+    100028: wingRGrp
+    100030: wingRMesh
+    100032: mainCtrl
+    400000: beakMesh
+    400002: bodyMesh
+    400004: combMesh
+    400006: eyeLMesh
+    400008: eyeRMesh
+    400010: footGrp
+    400012: footLMesh
+    400014: footRMesh
+    400016: headMesh
+    400018: //RootNode
+    400020: mainGrp
+    400022: tailMesh
+    400024: wingLGrp
+    400026: wingLMesh
+    400028: wingRGrp
+    400030: wingRMesh
+    400032: mainCtrl
+    2300000: beakMesh
+    2300002: bodyMesh
+    2300004: combMesh
+    2300006: eyeLMesh
+    2300008: eyeRMesh
+    2300010: footLMesh
+    2300012: footRMesh
+    2300014: headMesh
+    2300016: tailMesh
+    2300018: wingLMesh
+    2300020: wingRMesh
+    3300000: beakMesh
+    3300002: bodyMesh
+    3300004: combMesh
+    3300006: eyeLMesh
+    3300008: eyeRMesh
+    3300010: footLMesh
+    3300012: footRMesh
+    3300014: headMesh
+    3300016: tailMesh
+    3300018: wingLMesh
+    3300020: wingRMesh
+    4300000: footLMesh
+    4300002: footRMesh
+    4300004: bodyMesh
+    4300006: headMesh
+    4300008: eyeRMesh
+    4300010: eyeLMesh
+    4300012: beakMesh
+    4300014: combMesh
+    4300016: wingLMesh
+    4300018: wingRMesh
+    4300020: tailMesh
+    7400000: henIdle
+    7400002: henRun
+    7400004: henSit
+    7400006: henSitIdle
+    7400008: henIdle
+    7400010: henIdle2
+    7400012: henStart
+    7400014: henSwim
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 0
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations:
+    - name: henRun
+      takeName: Take 001
+      firstFrame: 11
+      lastFrame: 27
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: henSit
+      takeName: Take 001
+      firstFrame: 31
+      lastFrame: 61
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: henSitIdle
+      takeName: Take 001
+      firstFrame: 61
+      lastFrame: 110
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: henIdle
+      takeName: Take 001
+      firstFrame: 111
+      lastFrame: 131
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: henIdle2
+      takeName: Take 001
+      firstFrame: 131
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: henStart
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 2
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: henSwim
+      takeName: Take 001
+      firstFrame: 201
+      lastFrame: 216
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 
