@@ -1,7 +1,9 @@
 ﻿SEQUENCE
 	FindGameObject tag=Player rememberAs=Player
-	FindClosestUnlockedGameObject tag=TacticalPoint around=Player rememberAs=TacticalPoint
+	FindClosestUnlockedGameObject tag=TacticalPoint around=Player rememberAs=TacticalPoint minDistance=4
 	LockGameObject subject=TacticalPoint
 		SEQUENCE
+			Speak message=GotYourBack
 			Move to=TacticalPoint
+			Speak message=KeepingAnEyeOut
 			Wait duration=1

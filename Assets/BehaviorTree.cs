@@ -436,7 +436,7 @@ namespace BehaviorTree
 	{
 		public string tag;
 		public string rememberAs;
-		public string around;
+		public string around = "";
 		public float minDistance = -1.0f;
 		public float maxDistance = float.PositiveInfinity;
 
@@ -470,10 +470,10 @@ namespace BehaviorTree
 					float dist = Vector3.Distance(obj.transform.position, aroundPos);
 					bool withinDistance = dist > minDistance && dist < maxDistance;
 
-					var lockable = aroundObj.GetComponent<Lockable>();
-					bool unlocked = lockable != null ? lockable.locked : false;
+					var lockable = obj.GetComponent<Lockable>();
+					bool locked = lockable != null ? lockable.locked : false;
 
-					return withinDistance && unlocked;
+					return withinDistance && !locked;
 				})
 				.OrderBy(obj => Vector3.Distance(obj.transform.position, aroundPos))
 				.ToList();
@@ -500,6 +500,7 @@ namespace BehaviorTree
 				lockable = subjectObj.GetComponent<Lockable>();
 				if (lockable != null && !lockable.locked)
 				{
+					lockable.locked = true;
 					hasLock = true;
 					return;
 				}
@@ -551,18 +552,26 @@ namespace BehaviorTree
 	public class Move : Node
 	{
 		public string to;
+		public float stopDistance;
 			
 		private GameObject toGameObject;
 		private NavMeshAgent navMeshAgent;
 		private NavMeshPath path = new NavMeshPath();
 		private Vector3 targetPosAtLastPathing;
         private Status pendingStatus = Status.Running;
+		private Animator animator;
 
 		protected override void OnStart(Context context)
 		{
 			context.memory.Recall(to, out toGameObject);
 			navMeshAgent = context.ownerGameObject.GetComponentInChildren<NavMeshAgent>();
+			navMeshAgent.stoppingDistance = stopDistance;
             pendingStatus = RecalculatePath();
+			animator = context.ownerGameObject.GetComponentInChildren<Animator>();
+			if (animator && pendingStatus == Status.Running)
+			{
+				animator.SetBool("Moving", true);
+			}
 		}
 
 		protected override Status OnUpdate(Context context)
@@ -574,11 +583,16 @@ namespace BehaviorTree
 
 			if (navMeshAgent.hasPath && navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
 			{
-				bool arrived = navMeshAgent.remainingDistance <= 0.5f;
+				bool arrived = (navMeshAgent.remainingDistance - navMeshAgent.stoppingDistance) <= 0.5f;
 				if (arrived)
 				{
                     pendingStatus = Status.Success;
 				}
+			}
+
+			if (animator)
+			{
+				animator.speed = navMeshAgent.velocity.magnitude * 0.1f;
 			}
 
 			return pendingStatus;
@@ -586,6 +600,11 @@ namespace BehaviorTree
 
 		protected override void OnStop()
 		{
+			if (animator)
+			{
+				animator.SetBool("Moving", false);
+				animator.speed = 1.0f;
+			}
 			navMeshAgent.Stop();
 		}
 
