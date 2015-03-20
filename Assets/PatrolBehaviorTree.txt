@@ -1,4 +1,11 @@
 ﻿SEQUENCE
-	FindRandomGameObject tag=PatrolPoint rememberAs=PatrolPoint
+	RANDOM
+		Speak message=TheySeeMeRollin
+		Speak message=PatrollinYo
+		Speak message=FuckDaPolice
+		Speak message=WonderWhatsOverHere
+		Speak message=GonnaKillYourParents
+		Speak message=RememberToBuyEggs
+	FindRandomGameObject tag=PatrolPoint rememberAs=PatrolPoint minDistance=1.0
 	Move to=PatrolPoint
 	Wait duration=1

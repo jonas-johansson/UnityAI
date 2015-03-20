@@ -553,13 +553,14 @@ namespace BehaviorTree
 	{
 		public string to;
 		public float stopDistance;
-			
+
 		private GameObject toGameObject;
 		private NavMeshAgent navMeshAgent;
 		private NavMeshPath path = new NavMeshPath();
 		private Vector3 targetPosAtLastPathing;
         private Status pendingStatus = Status.Running;
 		private Animator animator;
+		private AgentAnimationProperties animProperties;
 
 		protected override void OnStart(Context context)
 		{
@@ -572,7 +573,8 @@ namespace BehaviorTree
 			{
 				animator.SetBool("Moving", true);
 			}
-		}
+			animProperties = context.ownerGameObject.GetComponentInChildren<AgentAnimationProperties>();
+        }
 
 		protected override Status OnUpdate(Context context)
 		{
@@ -592,7 +594,8 @@ namespace BehaviorTree
 
 			if (animator)
 			{
-				animator.speed = navMeshAgent.velocity.magnitude * 0.1f;
+				float multiplier = animProperties ? animProperties.moveAnimMultiplier : 0.15f;
+                animator.speed = navMeshAgent.velocity.magnitude * multiplier;
 			}
 
 			return pendingStatus;
@@ -648,6 +651,30 @@ namespace BehaviorTree
 			get
 			{
 				return navMeshAgent.hasPath && navMeshAgent.remainingDistance <= 0.5f;
+			}
+		}
+	}
+
+	public class Random : Node
+	{
+		private Node selectedChild;
+
+		protected override void OnStart(Context context)
+		{
+			selectedChild = children[UnityEngine.Random.Range(0, children.Count)];
+		}
+
+		protected override Status OnUpdate(Context context)
+		{
+			return selectedChild.Tick(context);
+		}
+
+		protected override void OnStop()
+		{
+			if (selectedChild != null)
+			{
+				selectedChild.Stop();
+				selectedChild = null;
 			}
 		}
 	}
