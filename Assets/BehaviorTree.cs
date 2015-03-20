@@ -422,25 +422,20 @@ namespace BehaviorTree
 			private NavMeshAgent navMeshAgent;
 			private NavMeshPath path = new NavMeshPath();
 			private Vector3 targetPosAtLastPathing;
+            private Status pendingStatus = Status.Running;
 
 			protected override void OnStart(Context context)
 			{
 				context.memory.Recall(to, out toGameObject);
 				navMeshAgent = context.ownerGameObject.GetComponentInChildren<NavMeshAgent>();
-				RecalculatePath();
+                pendingStatus = RecalculatePath();
 			}
 
 			protected override Status OnUpdate(Context context)
 			{
 				if (Vector3.Distance(targetPosAtLastPathing, toGameObject.transform.position) > 0.5)
 				{
-					RecalculatePath();
-				}
-
-				if (path.status != NavMeshPathStatus.PathComplete)
-				{
-					Debug.Log("Couldn't reach");
-					return Status.Failure;
+					pendingStatus = RecalculatePath();
 				}
 
 				if (navMeshAgent.hasPath && navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
@@ -448,12 +443,11 @@ namespace BehaviorTree
 					bool arrived = navMeshAgent.remainingDistance <= 0.5f;
 					if (arrived)
 					{
-						Debug.Log("Arrived");
-						return Status.Success;
+                        pendingStatus = Status.Success;
 					}
 				}
 
-				return Status.Running;
+				return pendingStatus;
 			}
 
 			protected override void OnStop()
@@ -461,7 +455,7 @@ namespace BehaviorTree
 				navMeshAgent.Stop();
 			}
 
-			private void RecalculatePath()
+			private Status RecalculatePath()
 			{
 				if (toGameObject)
 				{
@@ -474,20 +468,20 @@ namespace BehaviorTree
 					{
 						// If the actual end position is too far away from the desired
 						// end position we consider our movement a failure.
-						Debug.Log(path.corners.Length);
 						Vector3 pathEnd = path.corners[path.corners.Length - 1];
-						if (GroundDistance(target, pathEnd) < 0.1f)
-						{
-							if (navMeshAgent.SetPath(path))
-							{
-								return;
-							}
-						}
+                        if (GroundDistance(target, pathEnd) < 0.1f)
+                        {
+                            if (navMeshAgent.SetPath(path) && navMeshAgent.hasPath)
+                                return Status.Running;
+                            else
+                                return Status.Success;
+                        }
 					}
 				}
 
 				// Failure
 				path = new NavMeshPath();
+                return Status.Failure;
 			}
 
 			private float GroundDistance(Vector3 a, Vector3 b)
