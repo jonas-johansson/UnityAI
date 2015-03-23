@@ -684,6 +684,7 @@ namespace BehaviorTree
     {
         protected override Status OnUpdate(Context context)
         {
+            Debug.Break();
             return Status.Success;
         }
     }
