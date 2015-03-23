@@ -679,4 +679,12 @@ namespace BehaviorTree
 			}
 		}
 	}
+
+    public class Break : Node
+    {
+        protected override Status OnUpdate(Context context)
+        {
+            return Status.Success;
+        }
+    }
 }
