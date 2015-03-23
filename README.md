@@ -1,6 +1,6 @@
 # UnityAI
 
-Quick and dirty implementation of a behavior tree system in C# and Unity using a custom scripting language to craft your AI behaviors.
+Quick and dirty implementation of a Behavior Tree system in C# and Unity using a custom scripting language to craft your AI behaviors.
 * Easy to use
 * Extensible
 * Simple yet powerful
@@ -26,10 +26,10 @@ If you're looking for a complete package with visual tools, these seem popular:
 
 ## My Solution
 
-I wanted to be able to program nodes in a behavior tree, and describe their relationship in some way.
+I wanted to be able to program nodes in a Behavior Tree, and describe their relationship in some way.
 
 #### Attempt 1: Visual Designer
-My first attempt was to go visual, but I realized that I didn't care too much about that - I really just wanted to get going and write some behaviors.
+My first attempt was to make a visual tool for authoring behaviors, but I realized that I didn't care too much about that - I really just wanted to get going and write some behaviors.
 
 #### Attempt 2: XML
 I then looked at some way to describe the relationship and the data configuration of the nodes. I started out with XML, which is a great format for schema validation etc., but the syntax felt too instrusive.
@@ -37,5 +37,13 @@ I then looked at some way to describe the relationship and the data configuratio
 #### Attempt 3: JSON
 I looked at representing the behavior tree in JSON, but the hierarchy became very deep and the vertical span was far too high.
 
-#### Attempt 4: Custom scripting language
-I settled for a simple scripting language where tabs represent the nodes' hierarchical relationship, and I steered away from characters like [](){}<>; etc to make it as airy as possible.
+#### Attempt 4: Custom Scripting Language
+I settled for a simple scripting language where tabs represent the nodes' hierarchical relationship, and I steered away from characters like (){}<>; etc to make it as airy as possible.
+
+## Extending
+
+Simply create a new class and inherit from BehaviorTree.Node. Override one or all of the OnStart, OnUpdate, and OnStop methods to perform your work and report your status.
+
+Custom nodes are automatically discovered using reflection.
+
+Public fields of type int, float or string are automatically filled in with configuration data.
