@@ -249,6 +249,7 @@ namespace BehaviorTree
 	{
 		private List<Node>.Enumerator currentChild;
 		private bool childIsValid = false;
+
 		protected override void OnStart(Context context)
 		{
 			// Move to the first child
