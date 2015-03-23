@@ -339,15 +339,6 @@ namespace BehaviorTree
 		{
 			Debug.Log("BehaviorTree: " + message + "\n");
 		}
-
-		protected override Status OnUpdate(Context context)
-		{
-			return Status.Success;
-		}
-
-		protected override void OnStop()
-		{
-		}
 	}
 
 	public class Speak : Node
