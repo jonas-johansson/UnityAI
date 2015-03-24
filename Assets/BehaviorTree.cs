@@ -49,14 +49,16 @@ namespace BehaviorTree
 				node.typeName = tokens[0];
 
 				int depth = TreeDepth(unfilteredLine);
+
 				if (depth > stack.Count)
 					stack.Push(prev);
-				else if (depth < stack.Count)
+
+				while (depth < stack.Count)
 					stack.Pop();
 
 				if (stack.Count == 0)
 				{
-					this.root = node;
+					root = node;
 				}
 				else
 				{
@@ -91,8 +93,8 @@ namespace BehaviorTree
 
 		public Node ProduceInstance()
 		{
-			Node node = NodeFactory.Create(this.root.typeName);
-			node.Deserialize(this.root);
+			Node node = NodeFactory.Create(root.typeName);
+			node.Deserialize(root);
 			return node;
 		}
 	}
@@ -205,10 +207,10 @@ namespace BehaviorTree
 
 		public void Stop()
 		{
-			if (this.started)
+			if (started)
 			{
 				OnStop();
-				this.started = false;
+				started = false;
 			}
 		}
 
@@ -226,7 +228,7 @@ namespace BehaviorTree
 
 		private void PopulateFields(NodeDesc node)
 		{
-			var fields = this.GetType().GetFields();
+			var fields = GetType().GetFields();
 			foreach (var field in fields)
 			{
 				foreach (var parameter in node.parameters)
@@ -298,7 +300,7 @@ namespace BehaviorTree
 		protected override void OnStart(Context context)
 		{
 			// Move to the first child
-			currentChild = this.children.GetEnumerator();
+			currentChild = children.GetEnumerator();
 			currentChild.MoveNext();
 		}
 
@@ -530,7 +532,7 @@ namespace BehaviorTree
 
 		protected override void OnStart(Context context)
 		{
-			this.startTime = Time.time;
+			startTime = Time.time;
 		}
 
 		protected override Status OnUpdate(Context context)
