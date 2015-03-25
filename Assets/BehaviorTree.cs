@@ -247,6 +247,24 @@ namespace BehaviorTree
 		}
 	}
 
+	public class BehaviorTreeInstance
+	{
+		private Node rootNode;
+		private Context context;
+
+		public BehaviorTreeInstance(GameObject owner, string script)
+		{
+			var blueprint = new Blueprint(script);
+			rootNode = blueprint.ProduceInstance();
+			context = new Context() { ownerGameObject = owner };
+		}
+
+		public void Update()
+		{
+			rootNode.Tick(context);
+		}
+	}
+
 	public class Sequence : Node
 	{
 		private List<Node>.Enumerator currentChild;
