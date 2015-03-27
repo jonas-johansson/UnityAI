@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using BehaviorTree;
 
+/// <summary>
+/// Add this component to a game object that you want to run a behavior tree on.
+/// </summary>
 public class BehaviorTreeRunner : MonoBehaviour
 {
     [SerializeField]
