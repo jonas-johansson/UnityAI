@@ -6,12 +6,12 @@ using BehaviorTree;
 /// </summary>
 public class BehaviorTreeRunner : MonoBehaviour
 {
-    [SerializeField]
-    private TextAsset m_brainFile;
+	[SerializeField]
+	private TextAsset m_brainFile;
 	private BehaviorTreeInstance m_treeInstance;
 
-    void Start()
-    {
+	void Start()
+	{
 		m_treeInstance = new BehaviorTreeInstance(owner: gameObject, script: m_brainFile.text);
 	}
 
