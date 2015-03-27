@@ -87,7 +87,7 @@ namespace BehaviorTree
 				else
 					break;
 			}
-				
+
 			return level;
 		}
 
@@ -305,7 +305,7 @@ namespace BehaviorTree
 		{
 			if (childIsValid)
 			{
-                currentChild.Current.Stop();
+				currentChild.Current.Stop();
 				childIsValid = false;
 			}
 		}
@@ -437,7 +437,7 @@ namespace BehaviorTree
 					return dist > minDistance && dist < maxDistance;
 				}).ToList();
 
-            if (objects.Count > 0)
+			if (objects.Count > 0)
 				return objects[UnityEngine.Random.Range(0, objects.Count)];
 			else
 				return null;
@@ -507,7 +507,7 @@ namespace BehaviorTree
 		protected override void OnStart(Context context)
 		{
 			GameObject subjectObj;
-            if (context.memory.Recall(subject, out subjectObj))
+			if (context.memory.Recall(subject, out subjectObj))
 			{
 				lockable = subjectObj.GetComponent<Lockable>();
 				if (lockable != null && !lockable.locked)
@@ -570,7 +570,7 @@ namespace BehaviorTree
 		private NavMeshAgent navMeshAgent;
 		private NavMeshPath path = new NavMeshPath();
 		private Vector3 targetPosAtLastPathing;
-        private Status pendingStatus = Status.Running;
+		private Status pendingStatus = Status.Running;
 		private Animator animator;
 		private AgentAnimationProperties animProperties;
 
@@ -579,14 +579,14 @@ namespace BehaviorTree
 			context.memory.Recall(to, out toGameObject);
 			navMeshAgent = context.ownerGameObject.GetComponentInChildren<NavMeshAgent>();
 			navMeshAgent.stoppingDistance = stopDistance;
-            pendingStatus = RecalculatePath();
+			pendingStatus = RecalculatePath();
 			animator = context.ownerGameObject.GetComponentInChildren<Animator>();
 			if (animator && pendingStatus == Status.Running)
 			{
 				animator.SetBool("Moving", true);
 			}
 			animProperties = context.ownerGameObject.GetComponentInChildren<AgentAnimationProperties>();
-        }
+		}
 
 		protected override Status OnUpdate(Context context)
 		{
@@ -600,14 +600,14 @@ namespace BehaviorTree
 				bool arrived = (navMeshAgent.remainingDistance - navMeshAgent.stoppingDistance) <= 0.5f;
 				if (arrived)
 				{
-                    pendingStatus = Status.Success;
+					pendingStatus = Status.Success;
 				}
 			}
 
 			if (animator)
 			{
 				float multiplier = animProperties ? animProperties.moveAnimMultiplier : 0.15f;
-                animator.speed = navMeshAgent.velocity.magnitude * multiplier;
+				animator.speed = navMeshAgent.velocity.magnitude * multiplier;
 			}
 
 			return pendingStatus;
@@ -637,19 +637,19 @@ namespace BehaviorTree
 					// If the actual end position is too far away from the desired
 					// end position we consider our movement a failure.
 					Vector3 pathEnd = path.corners[path.corners.Length - 1];
-                    if (GroundDistance(target, pathEnd) < 0.1f)
-                    {
-                        if (navMeshAgent.SetPath(path) && navMeshAgent.hasPath)
-                            return Status.Running;
-                        else
-                            return Status.Success;
-                    }
+					if (GroundDistance(target, pathEnd) < 0.1f)
+					{
+						if (navMeshAgent.SetPath(path) && navMeshAgent.hasPath)
+							return Status.Running;
+						else
+							return Status.Success;
+					}
 				}
 			}
 
 			// Failure
 			path = new NavMeshPath();
-            return Status.Failure;
+			return Status.Failure;
 		}
 
 		private float GroundDistance(Vector3 a, Vector3 b)
@@ -691,12 +691,12 @@ namespace BehaviorTree
 		}
 	}
 
-    public class Break : Node
-    {
-        protected override Status OnUpdate(Context context)
-        {
-            Debug.Break();
-            return Status.Success;
-        }
-    }
+	public class Break : Node
+	{
+		protected override Status OnUpdate(Context context)
+		{
+			Debug.Break();
+			return Status.Success;
+		}
+	}
 }
