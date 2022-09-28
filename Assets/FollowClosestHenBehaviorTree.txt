@@ -1,9 +1,11 @@
 ﻿SELECTOR
 	SEQUENCE
 		FindClosestUnlockedGameObject tag=Hen rememberAs=Mother
-		Speak message=Mom
-		Move to=Mother stopDistance=1.0
-		Wait duration=1
+		LockGameObject subject=Mother
+			SEQUENCE
+				Speak message=Mom
+				Move to=Mother stopDistance=1.0
+				Wait duration=1
 	SEQUENCE
 		Speak message=ForeverAlone
 		Wait duration=1

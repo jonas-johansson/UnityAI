@@ -4,8 +4,8 @@
 		Speak message=PatrollinYo
 		Speak message=FuckDaPolice
 		Speak message=WonderWhatsOverHere
-		Speak message=GonnaKillYourParents
 		Speak message=RememberToBuyEggs
-	FindRandomGameObject tag=PatrolPoint rememberAs=PatrolPoint minDistance=1.0
+		Speak message=Eggcellent
+	FindRandomGameObject tag=PatrolPoint rememberAs=PatrolPoint minDistance=2.0
 	Move to=PatrolPoint
 	Wait duration=1

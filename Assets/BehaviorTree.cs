@@ -236,11 +236,15 @@ namespace BehaviorTree
 					if (parameter.key.ToLower() == field.Name.ToLower())
 					{
 						if (field.FieldType == typeof(int))
-							field.SetValue(this, int.Parse(parameter.value));
+							field.SetValue(this, int.Parse(parameter.value, System.Globalization.CultureInfo.InvariantCulture));
 						else if (field.FieldType == typeof(float))
-							field.SetValue(this, float.Parse(parameter.value));
+							field.SetValue(this, float.Parse(parameter.value, System.Globalization.CultureInfo.InvariantCulture));
 						else if (field.FieldType == typeof(string))
 							field.SetValue(this, parameter.value);
+						else if (field.FieldType == typeof(bool))
+							field.SetValue(this, bool.Parse(parameter.value));
+						else
+							Debug.LogError("Unsupported type " + field.FieldType.ToString() + " for field '" + field.Name + "'.\n");
 					}
 				}
 			}
@@ -567,8 +571,8 @@ namespace BehaviorTree
 		public float stopDistance;
 
 		private GameObject toGameObject;
-		private NavMeshAgent navMeshAgent;
-		private NavMeshPath path = new NavMeshPath();
+		private UnityEngine.AI.NavMeshAgent navMeshAgent;
+		private UnityEngine.AI.NavMeshPath path = new UnityEngine.AI.NavMeshPath();
 		private Vector3 targetPosAtLastPathing;
 		private Status pendingStatus = Status.Running;
 		private Animator animator;
@@ -577,7 +581,7 @@ namespace BehaviorTree
 		protected override void OnStart(Context context)
 		{
 			context.memory.Recall(to, out toGameObject);
-			navMeshAgent = context.ownerGameObject.GetComponentInChildren<NavMeshAgent>();
+			navMeshAgent = context.ownerGameObject.GetComponentInChildren<UnityEngine.AI.NavMeshAgent>();
 			navMeshAgent.stoppingDistance = stopDistance;
 			pendingStatus = RecalculatePath();
 			animator = context.ownerGameObject.GetComponentInChildren<Animator>();
@@ -595,7 +599,7 @@ namespace BehaviorTree
 				pendingStatus = RecalculatePath();
 			}
 
-			if (navMeshAgent.hasPath && navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
+			if (navMeshAgent.hasPath && navMeshAgent.pathStatus == UnityEngine.AI.NavMeshPathStatus.PathComplete)
 			{
 				bool arrived = (navMeshAgent.remainingDistance - navMeshAgent.stoppingDistance) <= 0.5f;
 				if (arrived)
@@ -629,16 +633,17 @@ namespace BehaviorTree
 			{
 				Vector3 target = toGameObject.transform.position;
 				targetPosAtLastPathing = target;
-				path = new NavMeshPath();
+				path = new UnityEngine.AI.NavMeshPath();
 				navMeshAgent.CalculatePath(target, path);
 
-				if (path.status == NavMeshPathStatus.PathComplete)
+				if (path.status == UnityEngine.AI.NavMeshPathStatus.PathComplete)
 				{
 					// If the actual end position is too far away from the desired
 					// end position we consider our movement a failure.
 					Vector3 pathEnd = path.corners[path.corners.Length - 1];
 					if (GroundDistance(target, pathEnd) < 0.1f)
 					{
+						navMeshAgent.ResetPath();
 						if (navMeshAgent.SetPath(path) && navMeshAgent.hasPath)
 							return Status.Running;
 						else
@@ -648,7 +653,7 @@ namespace BehaviorTree
 			}
 
 			// Failure
-			path = new NavMeshPath();
+			path = new UnityEngine.AI.NavMeshPath();
 			return Status.Failure;
 		}
 
